@@ -11,7 +11,151 @@ body {
   background-size: cover;
   -o-background-size: cover;
 }
-.socket{
+.stage {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  display: block;
+  perspective: 50vw;
+  perspective-origin: 50% 50%;
+}
+.stage h1 {
+  color:white;
+  text-align: center;
+  padding: 15px;
+  font-size: 100px;
+  margin-top: 15px;
+  font-family: helvetica;
+  font-weight: bold;
+
+}
+
+$borderThickness: 2px;
+$borderColor: black;
+$color: #ff60b7;
+$shadow: lighten($color, 8);
+
+.shape {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate3d(0,1,0,45deg);
+  animation: rotate 15s infinite linear;
+  width: 20vw;
+  height: 0;
+  -webkit-transform-style: preserve-3d;
+  padding-bottom: 20%;
+  .top {
+    transform: translate3d(0,-50%,0) rotate3d(1,0,0,90deg);
+  }
+  .bottom {
+    transform: translate3d(0,50%,0) rotate3d(1,0,0,-90deg);
+  }
+  .side-1 {
+    transform: translate3d(0,0,10vw) rotate3d(0,0,0,0);
+  }
+  .side-2 {
+    transform: translate3d(50%,0,0) rotate3d(0,1,0,90deg);
+  }
+  .side-3 {
+    transform: translate3d(0,0,-10vw) rotate3d(0,0,0,0);
+  }
+  .side-4 {
+    transform: translate3d(-50%,0,0) rotate3d(0,1,0,-90deg);
+  }
+  .top, .bottom, .side-1, .side-2, .side-3, .side-4 {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 14.5%;
+      right: 14.5%;
+      bottom: 14.5%;
+      left: 14.5%;
+      display: block;
+      // border: $borderThickness solid $borderColor;
+      transform: rotate3d(0,0,1,45deg);
+      outline: 1px solid transparent;
+      background-color: $color;
+      opacity: 1;
+    }
+  }
+  .corner-1, .corner-2, .corner-3, .corner-4, .corner-5, .corner-6, .corner-7, .corner-8 {
+    position: absolute;
+    width: 70%;
+    height: 61%;
+    //border-left: 5px solid transparent;
+    //border-right: 5px solid transparent;
+    //border-top: 10px solid $shadow;
+    -webkit-transform-style: preserve-3d;
+    opacity: 1;
+    background: $shadow;
+    -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+clip-path: polygon(50% 100%, 0 0, 100% 0);
+  }
+  .corner-5, .corner-6, .corner-7, .corner-8 {
+    //border-top: 0;
+    //border-bottom: 10px solid $shadow;
+    top: auto;
+    bottom: 0;
+    -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  .corner-1 {
+    transform-origin: left top;
+    transform: rotate3d(0,1,0,-45deg) rotate3d(1,0,0,35deg);
+  }
+  .corner-2 {
+    transform-origin: left top;
+    transform: rotate3d(0,1,0,45deg) rotate3d(1,0,0,-35deg);
+  }
+  .corner-3 {
+    transform-origin: right top;
+    transform: rotate3d(0,1,0,-45deg) rotate3d(1,0,0,-35deg);
+    top: 0;
+    right: 0;
+  }
+  .corner-4 {
+    transform-origin: right top;
+    transform: rotate3d(0,1,0,45deg) rotate3d(1,0,0,35deg);
+    top: 0;
+    right: 0;
+  }
+  .corner-5 {
+    transform-origin: left bottom;
+    transform: rotate3d(0,1,0,-45deg) rotate3d(1,0,0,-35deg);
+  }
+  .corner-6 {
+    transform-origin: left bottom;
+    transform: rotate3d(0,1,0,45deg) rotate3d(1,0,0,35deg);
+  }
+  .corner-7 {
+    transform-origin: right bottom;
+    transform: rotate3d(0,1,0,-45deg) rotate3d(1,0,0,35deg);
+    bottom: 0;
+    right: 0;
+  }
+  .corner-8 {
+    transform-origin: right bottom;
+    transform: rotate3d(0,1,0,45deg) rotate3d(1,0,0,-35deg);
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@keyframes rotate {
+  0% { transform: translate(-50%,-50%) scale(1) rotate3d(0,1,0,0deg) rotate3d(1,0,0,0deg); }
+  50% { transform: translate(-50%,-50%) scale(1.5) rotate3d(0,1,0,180deg) rotate3d(1,0,0,180deg); }
+  100% { transform: translate(-50%,-50%) scale(1) rotate3d(0,1,0,360deg) rotate3d(1,0,0,360deg); }
+}
+/*.socket{
 				width: 200px;
 				height: 200px;
 				position: absolute;
@@ -377,4 +521,4 @@ body {
       				100%{
       					background: #000000;
       				}
-      			}
+      			}*/
